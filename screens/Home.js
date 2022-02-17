@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {Text,View,SafeAreaView,TouchableOpacity,StyleSheet,FlatList,Image} from "react-native"
 import {icons,COLORS,images,FONTS, SIZES} from "../constants"
 import HomeDummyData from '../screens/dummydata/HomeDummyData'
@@ -8,6 +8,12 @@ const Home =() =>{
    let data=new HomeDummyData();
    const[selectedCategory,setSelectedCategory]=useState("");
    const[resturants,setResturants]=useState([])
+   const[categories,setCategories]=useState([])
+   
+   useEffect(()=>{
+     setResturants(data.restaurantData)
+     setCategories(data.categoryData);
+   },[])
 
    function renderHeader(){   
       return(      
@@ -57,6 +63,13 @@ const Home =() =>{
      let resturantList= data.restaurantData.filter(a=>(a.categories.includes(category.item.id)))
      setResturants(resturantList);
    } 
+
+
+  function getCategoryNameId(cateoryId){
+    let category=categories.filter(a=>a.id==cateoryId);
+    if(category.length>0)
+        return category[0].name
+  }
 
    function renderMainCategories(){
       renderItem = (item)=>{
@@ -140,9 +153,70 @@ const Home =() =>{
                    <View>
                      <Image
                        source={item.item.photo}
+                       resizeMode="cover"
+                       style={{
+                         width:'100%',
+                         height:300
+
+                       }}
                        />
+
+                      <View
+                       style={{
+                         position:"absolute",
+                         bottom:0,
+                         height:50,
+                         alignItems:"center",
+                         justifyContent:"center",
+                         width:SIZES.width * 0.3,
+                         backgroundColor:COLORS.white,
+                         borderTopRightRadius:SIZES.radius,
+                         ...styles.shadow
+                       }}
+                      > 
+                      
+                      <Text >{item.item.duration} </Text>
+
+
+
+                      </View>
+
+
+
                    </View>
 
+                 <Text style={{fontSize:20,marginTop:10,fontWeight:"bold"}}>{item.item.name}</Text>
+                 
+                  <View style={{flexDirection:"row",marginTop:5}}>
+
+                        <Image
+                           source={icons.star}
+                           style={{
+                             height:20,
+                             width:20,
+                             marginRight:10,
+                             tintColor:COLORS.primary
+                           }} />
+                 
+                   <Text>{item.item.rating}</Text>
+                  
+                   {/* categories */}
+                   {
+                      item.item.categories.map((categoryId)=>{
+                        return(<View style={{flexDirection:"row"}}>
+                                  <Text style={{marginRight:10,marginLeft:2}}>{getCategoryNameId(categoryId)} .</Text>
+                          </View>
+                          )
+                      })
+                   }
+
+
+                   <Text>$ {item.item.price}</Text>
+
+                  </View>
+
+
+                  
         </TouchableOpacity>
       ); 
 
@@ -155,7 +229,7 @@ const Home =() =>{
            renderItem={renderItem}
            contentContainerStyle={{
              paddingHorizontal:SIZES.padding*2,
-             paddingBottom: 30
+             paddingBottom: 100
            }} />
 
       );
@@ -165,8 +239,7 @@ const Home =() =>{
 
 
 
-
-
+  
    return (
      
      <SafeAreaView style={{height:1000}}> 

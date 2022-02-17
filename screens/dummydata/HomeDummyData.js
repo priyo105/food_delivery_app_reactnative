@@ -73,7 +73,7 @@ class HomeDummyData{
      restaurantData = [
         {
             id: 1,
-            name: "ByProgrammers Burger",
+            name: " Burger Mania",
             rating: 4.8,
             categories: [5, 7],
             priceRating: 1,
@@ -116,7 +116,7 @@ class HomeDummyData{
         },
         {
             id: 2,
-            name: "ByProgrammers Pizza",
+            name: "Home Pizza",
             rating: 4.8,
             categories: [2, 4, 6],
             priceRating: 3,
@@ -167,7 +167,7 @@ class HomeDummyData{
         },
         {
             id: 3,
-            name: "ByProgrammers Hotdogs",
+            name: "Hot Hotdogs",
             rating: 4.8,
             categories: [3],
             priceRating: 3,
@@ -194,7 +194,7 @@ class HomeDummyData{
         },
         {
             id: 4,
-            name: "ByProgrammers Sushi",
+            name: "Japanese Sushi",
             rating: 4.8,
             categories: [8],
             priceRating: 3,
@@ -221,7 +221,7 @@ class HomeDummyData{
         },
         {
             id: 5,
-            name: "ByProgrammers Cuisine",
+            name: "Lets Go Cuisine",
             rating: 4.8,
             categories: [1, 2],
             priceRating: 1,
@@ -274,7 +274,7 @@ class HomeDummyData{
         {
 
             id: 6,
-            name: "ByProgrammers Dessets",
+            name: "Heavy Dessets",
             rating: 4.9,
             categories: [9, 10],
             priceRating: 1,
